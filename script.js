@@ -1,19 +1,16 @@
-/*получает окно Input*/
 const input = document.getElementById('input');
 /*получает кнопки по общему классу*/
 const numberBtns = document.getElementsByClassName('numberButton');
 /*коллекцию в массив */
 const arrNumberBtns = Array.from(numberBtns);
-/*получает кнопку Backspace*/
 const btnBack = document.getElementById('buttonBackspace');
-/*получает кнопку reset*/
 const btnReset = document.getElementById('buttonReset');
+const btnResult = document.getElementById('buttonResult');
 
 let oneNumber = '';
 let twoNumber = '';
 let mathematicSign = '';
 
-/*удаляет последний символ по клику*/
 btnBack.onclick = () => {
     if (twoNumber === '') {
         input.value = input.value.slice(0, -1);
@@ -54,7 +51,7 @@ document.getElementById('buttonPlus').onclick = () => {
     }
 }
 
-document.getElementById('buttonResult').onclick = () => {
+btnResult.onclick = () => {
     if (mathematicSign === '+') {
         let sum = +oneNumber + +twoNumber;
         input.value = sum;
