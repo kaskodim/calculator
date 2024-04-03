@@ -15,7 +15,14 @@ let mathematicSign = '';
 
 /*удаляет последний символ по клику*/
 btnBack.onclick = () => {
-    input.value = input.value.slice(0, -1);
+    if (twoNumber === '') {
+        input.value = input.value.slice(0, -1);
+        oneNumber = input.value;
+    }
+    else {
+        input.value = input.value.slice(0, -1);
+        twoNumber = input.value;
+    }
 }
 
 arrNumberBtns.forEach((btn) => {
@@ -53,7 +60,7 @@ document.getElementById('buttonResult').onclick = () => {
         input.value = sum;
         mathematicSign = '';
         twoNumber = '';
-        oneNumber = sum;
+        oneNumber = '';
     }
 
     // todo дописать другие знаки
