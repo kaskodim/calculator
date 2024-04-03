@@ -1,21 +1,25 @@
-/*получает окно Input*/
 const input = document.getElementById('input');
 /*получает кнопки по общему классу*/
 const numberBtns = document.getElementsByClassName('numberButton');
 /*коллекцию в массив */
 const arrNumberBtns = Array.from(numberBtns);
-/*получает кнопку Backspace*/
 const btnBack = document.getElementById('buttonBackspace');
-/*получает кнопку reset*/
 const btnReset = document.getElementById('buttonReset');
+const btnResult = document.getElementById('buttonResult');
 
 let oneNumber = '';
 let twoNumber = '';
 let mathematicSign = '';
 
-/*удаляет последний символ по клику*/
 btnBack.onclick = () => {
-    input.value = input.value.slice(0, -1);
+    if (twoNumber === '') {
+        input.value = input.value.slice(0, -1);
+        oneNumber = input.value;
+    }
+    else {
+        input.value = input.value.slice(0, -1);
+        twoNumber = input.value;
+    }
 }
 
 arrNumberBtns.forEach((btn) => {
@@ -47,13 +51,13 @@ document.getElementById('buttonPlus').onclick = () => {
     }
 }
 
-document.getElementById('buttonResult').onclick = () => {
+btnResult.onclick = () => {
     if (mathematicSign === '+') {
         let sum = +oneNumber + +twoNumber;
         input.value = sum;
         mathematicSign = '';
         twoNumber = '';
-        oneNumber = sum;
+        oneNumber = '';
     }
 
     // todo дописать другие знаки
