@@ -1,0 +1,83 @@
+* {
+  box-sizing: border-box;
+}
+
+.calc {
+  margin: 50px auto;
+  width: fit-content;
+  border: 1px solid black;
+  border-radius: 10px;
+  background: #819BD3;
+  box-shadow: inset -2px -3px 20px 0px #00000096, 10px 10px 13px 0px #00000096;
+}
+
+.input {
+  grid-area: input;
+  height: 100px;
+  text-align: end;
+  background: #b6dbf8;
+  cursor: default;
+  user-select: none;
+  pointer-events: none;
+  margin-bottom: 20px;
+  font-size: 15px;
+  box-shadow: inset 2px 4px 6px 0px #00000096;
+}
+
+.buttons {
+  display: grid;
+  grid-template-areas:
+    "input input input input"
+    "1 2 3 4"
+    "5 6 7 8"
+    "9 10 11 12"
+    "13 14 15 16"
+    "17 18 btn-result btn-result";
+  padding: 15px;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  background: #FCE88F;
+  font-size: 25px;
+  color: rgb(0, 0, 0);
+  user-select: none;
+  font-weight: 520;
+  box-shadow: 3px 4px 3px 0px #00000096;
+}
+
+.btn:hover {
+  filter: brightness(110%);
+}
+
+.btn:active {
+  filter: brightness(85%);
+  box-shadow: inset 3px 2px 4px 3px #00000096;
+  font-size: 24px;
+}
+
+.btn:disabled {
+  opacity: 35%;
+}
+
+.btn-result {
+  grid-area: btn-result;
+  width: 100%;
+  background: #F98E35;
+}
+
+.btn-res {
+  background: rgb(209, 1, 1);
+  color: wheat;
+}
+
+/* кнопки знаков */
+.btn-signs {
+  background: #f9b835a1;
+  color: rgb(0, 0, 0);
+}
+
