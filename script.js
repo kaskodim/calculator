@@ -1,17 +1,37 @@
 const input = document.getElementById('input');
-/*получает кнопки по общему классу*/
+/*  получает кнопки по общему классу    */
 const numberBtns = document.getElementsByClassName('numberButton');
-/*коллекцию в массив */
+/*  коллекцию в массив  */
 const arrNumberBtns = Array.from(numberBtns);
+const btnSigns = document.getElementsByClassName('btn-matSigns');
+const arrBtnSigns = Array.from(btnSigns);
 const btnBack = document.getElementById('buttonBackspace');
 const btnReset = document.getElementById('buttonReset');
 const btnResult = document.getElementById('buttonResult');
+const divisionByZero = 'на 0 делить нельзя';
 
 let oneNumber = '';
 let twoNumber = '';
 let mathematicSign = '';
+let result = '';
+
+function allReset() {
+    oneNumber = '';
+    twoNumber = '';
+    mathematicSign = '';
+    result = '';
+}
+
+btnReset.onclick = () => {
+    input.value = '';
+    allReset()
+}
 
 btnBack.onclick = () => {
+    if (input.value === divisionByZero) {
+        input.value = '';
+        allReset();
+    }
     if (twoNumber === '') {
         input.value = input.value.slice(0, -1);
         oneNumber = input.value;
@@ -22,51 +42,53 @@ btnBack.onclick = () => {
     }
 }
 
-arrNumberBtns.forEach((btn) => {
-    btn.onclick = () => {
+arrNumberBtns.forEach((btnNum) => {
+    btnNum.onclick = () => {
         if (mathematicSign === '' || oneNumber === '') {
-            oneNumber = oneNumber + btn.innerHTML;
+            oneNumber = oneNumber + btnNum.innerHTML;
             input.value = oneNumber;
         }
         else {
-            twoNumber = twoNumber + btn.innerHTML;
+            twoNumber = twoNumber + btnNum.innerHTML;
             input.value = twoNumber;
         }
     }
 })
 
-document.getElementById('buttonPlus').onclick = () => {
-    if (oneNumber === '') {
-        mathematicSign = '';
+arrBtnSigns.forEach((btnSign) => {
+    btnSign.onclick = () => {
+        if (mathematicSign === '/' && twoNumber === '0') {
+            input.value = divisionByZero;
+            return
+        }
+
+        if (oneNumber !== '' && mathematicSign !== '' && twoNumber !== '') {
+            result = eval(oneNumber + mathematicSign + twoNumber);
+            input.value = result;
+            oneNumber = result;
+            twoNumber = '';
+        }
+
+        mathematicSign = btnSign.textContent;
+
+        if (oneNumber === '') {
+            mathematicSign = '';
+        }
+        else if (btnSign.textContent === 'x') {
+            mathematicSign = '*';
+        }
     }
-    else {
-        mathematicSign = '+';
-    }
-    if (twoNumber !== '') {
-        let sum = +oneNumber + +twoNumber;
-        input.value = sum;
-        oneNumber = sum;
-        twoNumber = '';
-        mathematicSign = '+';
-    }
-}
+})
 
 btnResult.onclick = () => {
-    if (mathematicSign === '+') {
-        let sum = +oneNumber + +twoNumber;
-        input.value = sum;
+    if (mathematicSign === '/' && twoNumber === '0') {
+        input.value = divisionByZero;
+    }
+    else {
+        result = eval(oneNumber + mathematicSign + twoNumber);
+        input.value = result;
+        oneNumber = result;
         mathematicSign = '';
         twoNumber = '';
-        oneNumber = '';
     }
-
-    // todo дописать другие знаки
-    else if (mathematicSign === '-') { }
-}
-
-btnReset.onclick = () => {
-    input.value = '';
-    oneNumber = '';
-    twoNumber = '';
-    mathematicSign = '';
 }
