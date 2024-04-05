@@ -3,23 +3,21 @@ const input = document.getElementById('input');
 const numberBtns = document.getElementsByClassName('numberButton');
 /*  коллекцию в массив  */
 const arrNumberBtns = Array.from(numberBtns);
-const btnSigns = document.getElementsByClassName('btn-matSigns');
+const btnSigns = document.getElementsByClassName('btn-mathSigns');
 const arrBtnSigns = Array.from(btnSigns);
 const btnBack = document.getElementById('buttonBackspace');
 const btnReset = document.getElementById('buttonReset');
 const btnResult = document.getElementById('buttonResult');
-const divisionByZero = 'на 0 делить нельзя';
+const DIVISION_BY_ZERO = 'на 0 делить нельзя';
 
 let oneNumber = '';
 let twoNumber = '';
 let mathematicSign = '';
-let result = '';
 
 function allReset() {
     oneNumber = '';
     twoNumber = '';
     mathematicSign = '';
-    result = '';
 }
 
 btnReset.onclick = () => {
@@ -28,7 +26,7 @@ btnReset.onclick = () => {
 }
 
 btnBack.onclick = () => {
-    if (input.value === divisionByZero) {
+    if (input.value === DIVISION_BY_ZERO) {
         input.value = '';
         allReset();
     }
@@ -42,39 +40,39 @@ btnBack.onclick = () => {
     }
 }
 
-arrNumberBtns.forEach((btnNum) => {
-    btnNum.onclick = () => {
+arrNumberBtns.forEach((numBtn) => {
+    numBtn.onclick = () => {
         if (mathematicSign === '' || oneNumber === '') {
-            oneNumber = oneNumber + btnNum.innerHTML;
+            oneNumber = oneNumber + numBtn.innerHTML;
             input.value = oneNumber;
         }
         else {
-            twoNumber = twoNumber + btnNum.innerHTML;
+            twoNumber = twoNumber + numBtn.innerHTML;
             input.value = twoNumber;
         }
     }
 })
 
-arrBtnSigns.forEach((btnSign) => {
-    btnSign.onclick = () => {
+arrBtnSigns.forEach((signBtn) => {
+    signBtn.onclick = () => {
         if (mathematicSign === '/' && twoNumber === '0') {
-            input.value = divisionByZero;
+            input.value = DIVISION_BY_ZERO;
             return
         }
 
         if (oneNumber !== '' && mathematicSign !== '' && twoNumber !== '') {
-            result = eval(oneNumber + mathematicSign + twoNumber);
+            let result = eval(oneNumber + mathematicSign + twoNumber);
             input.value = result;
             oneNumber = result;
             twoNumber = '';
         }
 
-        mathematicSign = btnSign.textContent;
+        mathematicSign = signBtn.textContent;
 
         if (oneNumber === '') {
             mathematicSign = '';
         }
-        else if (btnSign.textContent === 'x') {
+        else if (signBtn.textContent === 'x') {
             mathematicSign = '*';
         }
     }
@@ -82,10 +80,10 @@ arrBtnSigns.forEach((btnSign) => {
 
 btnResult.onclick = () => {
     if (mathematicSign === '/' && twoNumber === '0') {
-        input.value = divisionByZero;
+        input.value = DIVISION_BY_ZERO;
     }
     else {
-        result = eval(oneNumber + mathematicSign + twoNumber);
+        let result = eval(oneNumber + mathematicSign + twoNumber);
         input.value = result;
         oneNumber = result;
         mathematicSign = '';
