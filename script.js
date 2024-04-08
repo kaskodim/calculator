@@ -1,9 +1,9 @@
-const input = document.getElementById('input');
+const input = document.getElementById('currentValue');
 /*  получает кнопки по общему классу    */
 const numberBtns = document.getElementsByClassName('numberButton');
 /*  коллекцию в массив  */
 const arrNumberBtns = Array.from(numberBtns);
-const btnSigns = document.getElementsByClassName('btn-mathSigns');
+const btnSigns = document.getElementsByClassName('btnMathSigns');
 const arrBtnSigns = Array.from(btnSigns);
 const btnBack = document.getElementById('buttonBackspace');
 const btnReset = document.getElementById('buttonReset');
@@ -20,35 +20,54 @@ function allReset() {
     mathematicSign = '';
 }
 
+function showDivisionByZeroError() {
+    input.textContent = DIVISION_BY_ZERO;
+    input.classList.add('error');
+    allReset();
+}
+
+function changeScreenText(screenText) {
+    input.classList.remove('error');
+    input.textContent = screenText;
+}
+
 btnReset.onclick = () => {
-    input.value = '';
-    allReset()
+    input.textContent = '';
+    allReset();
 }
 
 btnBack.onclick = () => {
-    if (input.value === DIVISION_BY_ZERO) {
-        input.value = '';
+    if (input.textContent === DIVISION_BY_ZERO) {
+        input.textContent = '';
         allReset();
     }
     if (twoNumber === '') {
-        input.value = input.value.slice(0, -1);
-        oneNumber = input.value;
+        changeScreenText(input.textContent.slice(0, -1));
+        oneNumber = input.textContent;
     }
     else {
-        input.value = input.value.slice(0, -1);
-        twoNumber = input.value;
+        changeScreenText(input.textContent.slice(0, -1));
+        twoNumber = input.textContent;
     }
 }
 
 arrNumberBtns.forEach((numBtn) => {
     numBtn.onclick = () => {
+        if (oneNumber === '0') {
+            oneNumber = '';
+            input.textContent = ''
+        }
+        if (twoNumber === '0') {
+            twoNumber = '';
+            input.textContent = ''
+        }
         if (mathematicSign === '' || oneNumber === '') {
             oneNumber = oneNumber + numBtn.innerHTML;
-            input.value = oneNumber;
+            changeScreenText(oneNumber)
         }
         else {
             twoNumber = twoNumber + numBtn.innerHTML;
-            input.value = twoNumber;
+            changeScreenText(twoNumber);
         }
     }
 })
@@ -56,13 +75,13 @@ arrNumberBtns.forEach((numBtn) => {
 arrBtnSigns.forEach((signBtn) => {
     signBtn.onclick = () => {
         if (mathematicSign === '/' && twoNumber === '0') {
-            input.value = DIVISION_BY_ZERO;
+            showDivisionByZeroError();
             return
         }
 
         if (oneNumber !== '' && mathematicSign !== '' && twoNumber !== '') {
             let result = eval(oneNumber + mathematicSign + twoNumber);
-            input.value = result;
+            changeScreenText(result);
             oneNumber = result;
             twoNumber = '';
         }
@@ -80,11 +99,11 @@ arrBtnSigns.forEach((signBtn) => {
 
 btnResult.onclick = () => {
     if (mathematicSign === '/' && twoNumber === '0') {
-        input.value = DIVISION_BY_ZERO;
+        showDivisionByZeroError();
     }
     else {
         let result = eval(oneNumber + mathematicSign + twoNumber);
-        input.value = result;
+        changeScreenText(result);
         oneNumber = result;
         mathematicSign = '';
         twoNumber = '';

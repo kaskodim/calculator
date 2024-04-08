@@ -11,20 +11,31 @@
   box-shadow: inset -2px -3px 20px 0px #00000096, 10px 10px 13px 0px #00000096;
 }
 
-.input {
+.screen {
   grid-area: input;
   height: 100px;
-  text-align: end;
+  border: 1px solid black;
+  border-radius: 10px;
   background: #b6dbf8;
-  cursor: default;
-  user-select: none;
-  pointer-events: none;
-  margin-bottom: 20px;
-  font-size: 15px;
   box-shadow: inset 2px 4px 6px 0px #00000096;
+  padding: 10px;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  user-select: none;
 }
 
-.buttons {
+.currentValue {
+  margin: 0;
+  font-size: 30px;
+}
+
+.currentValue.error {
+ color: red;
+ font-size: 20px;
+}
+
+.grid {
   display: grid;
   grid-template-areas:
     "input input input input"
@@ -32,7 +43,7 @@
     "5 6 7 8"
     "9 10 11 12"
     "13 14 15 16"
-    "17 18 btn-result btn-result";
+    "17 18 btnResult btnResult";
   padding: 15px;
   justify-content: center;
   gap: 10px;
@@ -51,7 +62,7 @@
 }
 
 .btn:hover {
-  filter: brightness(110%);
+  filter: brightness(120%);
 }
 
 .btn:active {
@@ -64,20 +75,19 @@
   opacity: 35%;
 }
 
-.btn-result {
-  grid-area: btn-result;
+.btnResult {
+  grid-area: btnResult;
   width: 100%;
   background: #F98E35;
 }
 
-.btn-res {
+.btnRes {
   background: rgb(209, 1, 1);
   color: wheat;
 }
 
 /* кнопки знаков */
-.btn-signs {
+.btnSigns {
   background: #f9b835a1;
   color: rgb(0, 0, 0);
 }
-
