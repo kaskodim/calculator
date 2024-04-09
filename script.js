@@ -1,5 +1,5 @@
 const input = document.getElementById('currentValue');
-/*  получает кнопки по общему классу    */
+/*  получает кнопки по общему классу в коллекцию   */
 const numberBtns = document.getElementsByClassName('numberButton');
 /*  коллекцию в массив  */
 const arrNumberBtns = Array.from(numberBtns);
@@ -8,6 +8,7 @@ const arrBtnSigns = Array.from(btnSigns);
 const btnBack = document.getElementById('buttonBackspace');
 const btnReset = document.getElementById('buttonReset');
 const btnResult = document.getElementById('buttonResult');
+const btnChangeSign = document.getElementById('buttonPolarity');
 const DIVISION_BY_ZERO = 'на 0 делить нельзя';
 
 let oneNumber = '';
@@ -51,19 +52,38 @@ btnBack.onclick = () => {
     }
 }
 
+btnChangeSign.onclick = () => {
+    if (oneNumber[0] === '-' && twoNumber === '') {
+        oneNumber = oneNumber.slice(1);
+        changeScreenText(oneNumber);
+    }
+    else if (oneNumber[0] !== '-' && twoNumber === '') {
+        oneNumber = '-' + oneNumber;
+        changeScreenText(oneNumber);
+    }
+    else if (twoNumber[0] === '-') {
+        twoNumber = twoNumber.slice(1);
+        changeScreenText(twoNumber);
+    }
+    else if (twoNumber[0] !== '-') {
+        twoNumber = '-' + twoNumber;
+        changeScreenText(twoNumber);
+    }
+}
+
 arrNumberBtns.forEach((numBtn) => {
     numBtn.onclick = () => {
         if (oneNumber === '0') {
             oneNumber = '';
-            input.textContent = ''
+            input.textContent = '';
         }
         if (twoNumber === '0') {
             twoNumber = '';
-            input.textContent = ''
+            input.textContent = '';
         }
         if (mathematicSign === '' || oneNumber === '') {
             oneNumber = oneNumber + numBtn.innerHTML;
-            changeScreenText(oneNumber)
+            changeScreenText(oneNumber);
         }
         else {
             twoNumber = twoNumber + numBtn.innerHTML;
@@ -74,13 +94,16 @@ arrNumberBtns.forEach((numBtn) => {
 
 arrBtnSigns.forEach((signBtn) => {
     signBtn.onclick = () => {
+        if (oneNumber === '' && signBtn.textContent === '-') {
+            btnChangeSign.onclick();
+            return;
+        }
         if (mathematicSign === '/' && twoNumber === '0') {
             showDivisionByZeroError();
             return
         }
-
         if (oneNumber !== '' && mathematicSign !== '' && twoNumber !== '') {
-            let result = eval(oneNumber + mathematicSign + twoNumber);
+            let result = eval(oneNumber + ' ' + mathematicSign + ' ' + twoNumber);
             changeScreenText(result);
             oneNumber = result;
             twoNumber = '';
@@ -102,7 +125,7 @@ btnResult.onclick = () => {
         showDivisionByZeroError();
     }
     else {
-        let result = eval(oneNumber + mathematicSign + twoNumber);
+        let result = eval(oneNumber + ' ' + mathematicSign + ' ' + twoNumber);
         changeScreenText(result);
         oneNumber = result;
         mathematicSign = '';
