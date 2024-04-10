@@ -11,6 +11,8 @@ const btnResult = document.getElementById('buttonResult');
 const btnChangeSign = document.getElementById('buttonPolarity');
 const btnPoint = document.getElementById('buttonPoint');
 const DIVISION_BY_ZERO = 'на 0 делить нельзя';
+const NUMBERS = '1234567890';
+const SINGS = '/*-+';
 
 let oneNumber = '';
 let twoNumber = '';
@@ -44,6 +46,51 @@ function addingPoint(variable) {
         variable = variable + '.';
         changeScreenText(variable);
         return variable;
+    }
+}
+
+function onPressOrOnClickNumber(num) {
+    if (oneNumber === '0') {
+        oneNumber = '';
+        input.textContent = '';
+    }
+    if (twoNumber === '0') {
+        twoNumber = '';
+        input.textContent = '';
+    }
+    if (mathematicSign === '' || oneNumber === '') {
+        oneNumber = oneNumber + num;
+        changeScreenText(oneNumber);
+    }
+    else {
+        twoNumber = twoNumber + num;
+        changeScreenText(twoNumber);
+    }
+}
+
+function onPressOrOnClickSingn(sign) {
+    if (oneNumber === '' && sign === '-') {
+        btnChangeSign.onclick();
+        return;
+    }
+    if (mathematicSign === '/' && twoNumber === '0') {
+        showDivisionByZeroError();
+        return
+    }
+    if (oneNumber !== '' && mathematicSign !== '' && twoNumber !== '') {
+        let result = eval(oneNumber + ' ' + mathematicSign + ' ' + twoNumber);
+        changeScreenText(result);
+        oneNumber = result;
+        twoNumber = '';
+    }
+
+    mathematicSign = sign;
+
+    if (oneNumber === '') {
+        mathematicSign = '';
+    }
+    else if (sign === 'x') {
+        mathematicSign = '*';
     }
 }
 
@@ -87,52 +134,11 @@ btnChangeSign.onclick = () => {
 }
 
 arrNumberBtns.forEach((numBtn) => {
-    numBtn.onclick = () => {
-        if (oneNumber === '0') {
-            oneNumber = '';
-            input.textContent = '';
-        }
-        if (twoNumber === '0') {
-            twoNumber = '';
-            input.textContent = '';
-        }
-        if (mathematicSign === '' || oneNumber === '') {
-            oneNumber = oneNumber + numBtn.innerHTML;
-            changeScreenText(oneNumber);
-        }
-        else {
-            twoNumber = twoNumber + numBtn.innerHTML;
-            changeScreenText(twoNumber);
-        }
-    }
+    numBtn.onclick = onPressOrOnClickNumber.bind(null, numBtn.innerHTML);
 })
 
 arrBtnSigns.forEach((signBtn) => {
-    signBtn.onclick = () => {
-        if (oneNumber === '' && signBtn.textContent === '-') {
-            btnChangeSign.onclick();
-            return;
-        }
-        if (mathematicSign === '/' && twoNumber === '0') {
-            showDivisionByZeroError();
-            return
-        }
-        if (oneNumber !== '' && mathematicSign !== '' && twoNumber !== '') {
-            let result = eval(oneNumber + ' ' + mathematicSign + ' ' + twoNumber);
-            changeScreenText(result);
-            oneNumber = result;
-            twoNumber = '';
-        }
-
-        mathematicSign = signBtn.textContent;
-
-        if (oneNumber === '') {
-            mathematicSign = '';
-        }
-        else if (signBtn.textContent === 'x') {
-            mathematicSign = '*';
-        }
-    }
+    signBtn.onclick = onPressOrOnClickSingn.bind(null, signBtn.textContent)
 })
 
 btnPoint.onclick = () => {
@@ -156,3 +162,24 @@ btnResult.onclick = () => {
         twoNumber = '';
     }
 }
+
+document.getElementById('root').addEventListener('keydown', (event) => {
+    if (event.key === 'Delete' || event.key === 'Escape') {
+        btnReset.click();
+    }
+    if (event.key === 'Backspace') {
+        btnBack.click();
+    }
+    if (NUMBERS.includes(event.key)) {
+        onPressOrOnClickNumber(event.key);
+    }
+    if (SINGS.includes(event.key)) {
+        onPressOrOnClickSingn(event.key);
+    }
+    if (event.key === '.') {
+        btnPoint.click();
+    }
+    if (event.key === 'Enter') {
+        btnResult.click();
+    }
+})
