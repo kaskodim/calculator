@@ -9,6 +9,7 @@ const btnBack = document.getElementById('buttonBackspace');
 const btnReset = document.getElementById('buttonReset');
 const btnResult = document.getElementById('buttonResult');
 const btnChangeSign = document.getElementById('buttonPolarity');
+const btnPoint = document.getElementById('buttonPoint');
 const DIVISION_BY_ZERO = 'на 0 делить нельзя';
 
 let oneNumber = '';
@@ -30,6 +31,20 @@ function showDivisionByZeroError() {
 function changeScreenText(screenText) {
     input.classList.remove('error');
     input.textContent = screenText;
+}
+
+function addingPoint(variable) {
+    if (variable.includes('.')) {
+        return variable;
+    }
+    else if (variable === '') {
+        return variable;
+    }
+    else {
+        variable = variable + '.';
+        changeScreenText(variable);
+        return variable;
+    }
 }
 
 btnReset.onclick = () => {
@@ -119,6 +134,15 @@ arrBtnSigns.forEach((signBtn) => {
         }
     }
 })
+
+btnPoint.onclick = () => {
+    if (mathematicSign === '') {
+        oneNumber = addingPoint(oneNumber);
+    }
+    else {
+        twoNumber = addingPoint(twoNumber);
+    }
+}
 
 btnResult.onclick = () => {
     if (mathematicSign === '/' && twoNumber === '0') {
