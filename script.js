@@ -18,157 +18,30 @@ let oneNumber = '';
 let twoNumber = '';
 let mathematicSign = '';
 
-function allReset() {
-    oneNumber = '';
-    twoNumber = '';
-    mathematicSign = '';
-}
+btnReset.onclick = onPressOrOnClickReset;
 
-function showDivisionByZeroError() {
-    input.textContent = DIVISION_BY_ZERO;
-    input.classList.add('error');
-    allReset();
-}
+btnBack.onclick = onPressOrOnClickBack;
 
-function changeScreenText(screenText) {
-    input.classList.remove('error');
-    input.textContent = screenText;
-}
-
-function addingPoint(variable) {
-    if (variable.includes('.')) {
-        return variable;
-    }
-    else if (variable === '') {
-        return variable;
-    }
-    else {
-        variable = variable + '.';
-        changeScreenText(variable);
-        return variable;
-    }
-}
-
-function onPressOrOnClickNumber(num) {
-    if (oneNumber === '0') {
-        oneNumber = '';
-        input.textContent = '';
-    }
-    if (twoNumber === '0') {
-        twoNumber = '';
-        input.textContent = '';
-    }
-    if (mathematicSign === '' || oneNumber === '') {
-        oneNumber = oneNumber + num;
-        changeScreenText(oneNumber);
-    }
-    else {
-        twoNumber = twoNumber + num;
-        changeScreenText(twoNumber);
-    }
-}
-
-function onPressOrOnClickSingn(sign) {
-    if (oneNumber === '' && sign === '-') {
-        btnChangeSign.onclick();
-        return;
-    }
-    if (mathematicSign === '/' && twoNumber === '0') {
-        showDivisionByZeroError();
-        return
-    }
-    if (oneNumber !== '' && mathematicSign !== '' && twoNumber !== '') {
-        let result = eval(oneNumber + ' ' + mathematicSign + ' ' + twoNumber);
-        changeScreenText(result);
-        oneNumber = result;
-        twoNumber = '';
-    }
-
-    mathematicSign = sign;
-
-    if (oneNumber === '') {
-        mathematicSign = '';
-    }
-    else if (sign === 'x') {
-        mathematicSign = '*';
-    }
-}
-
-btnReset.onclick = () => {
-    input.textContent = '';
-    allReset();
-}
-
-btnBack.onclick = () => {
-    if (input.textContent === DIVISION_BY_ZERO) {
-        input.textContent = '';
-        allReset();
-    }
-    if (twoNumber === '') {
-        changeScreenText(input.textContent.slice(0, -1));
-        oneNumber = input.textContent;
-    }
-    else {
-        changeScreenText(input.textContent.slice(0, -1));
-        twoNumber = input.textContent;
-    }
-}
-
-btnChangeSign.onclick = () => {
-    if (oneNumber[0] === '-' && twoNumber === '') {
-        oneNumber = oneNumber.slice(1);
-        changeScreenText(oneNumber);
-    }
-    else if (oneNumber[0] !== '-' && twoNumber === '') {
-        oneNumber = '-' + oneNumber;
-        changeScreenText(oneNumber);
-    }
-    else if (twoNumber[0] === '-') {
-        twoNumber = twoNumber.slice(1);
-        changeScreenText(twoNumber);
-    }
-    else if (twoNumber[0] !== '-') {
-        twoNumber = '-' + twoNumber;
-        changeScreenText(twoNumber);
-    }
-}
+btnChangeSign.onclick = onPressOrOnClickChangeSign;
 
 arrNumberBtns.forEach((numBtn) => {
     numBtn.onclick = onPressOrOnClickNumber.bind(null, numBtn.innerHTML);
 })
 
 arrBtnSigns.forEach((signBtn) => {
-    signBtn.onclick = onPressOrOnClickSingn.bind(null, signBtn.textContent)
+    signBtn.onclick = onPressOrOnClickSingn.bind(null, signBtn.textContent);
 })
 
-btnPoint.onclick = () => {
-    if (mathematicSign === '') {
-        oneNumber = addingPoint(oneNumber);
-    }
-    else {
-        twoNumber = addingPoint(twoNumber);
-    }
-}
+btnPoint.onclick = onPressOrOnClickPoint;
 
-btnResult.onclick = () => {
-    if (mathematicSign === '/' && twoNumber === '0') {
-        showDivisionByZeroError();
-    }
-    else {
-        let result = eval(oneNumber + ' ' + mathematicSign + ' ' + twoNumber);
-        changeScreenText(result);
-        oneNumber = result;
-        mathematicSign = '';
-        twoNumber = '';
-    }
-}
+btnResult.onclick = onPressOrOnClickPesult;
 
 document.getElementById('root').addEventListener('keydown', (event) => {
     if (event.key === 'Delete' || event.key === 'Escape') {
-        btnReset.click();
+        onPressOrOnClickReset();
     }
     if (event.key === 'Backspace') {
-        btnBack.click();
+        onPressOrOnClickBack();
     }
     if (NUMBERS.includes(event.key)) {
         onPressOrOnClickNumber(event.key);
@@ -176,10 +49,11 @@ document.getElementById('root').addEventListener('keydown', (event) => {
     if (SINGS.includes(event.key)) {
         onPressOrOnClickSingn(event.key);
     }
-    if (event.key === '.') {
-        btnPoint.click();
+    if (event.key === '.' || event.key === ',') {
+        onPressOrOnClickPoint();
+        console.log(event.key)
     }
     if (event.key === 'Enter') {
-        btnResult.click();
+        onPressOrOnClickPesult ();
     }
 })
