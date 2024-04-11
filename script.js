@@ -49,8 +49,9 @@ document.getElementById('root').addEventListener('keydown', (event) => {
     if (SINGS.includes(event.key)) {
         onPressOrOnClickSingn(event.key);
     }
-    if (event.key === '.') {
-        onPressOrOnClickBack();
+    if (event.key === '.' || event.key === ',') {
+        onPressOrOnClickPoint();
+        console.log(event.key)
     }
     if (event.key === 'Enter') {
         onPressOrOnClickPesult ();

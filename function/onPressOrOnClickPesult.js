@@ -5,7 +5,7 @@ function onPressOrOnClickPesult () {
     else {
         let result = eval(oneNumber + ' ' + mathematicSign + ' ' + twoNumber);
         changeScreenText(result);
-        oneNumber = result;
+        oneNumber = result.toString();
         mathematicSign = '';
         twoNumber = '';
     }
