@@ -9,6 +9,7 @@ function onPressOrOnClickSingn(sign) {
     }
     if (oneNumber !== '' && mathematicSign !== '' && twoNumber !== '') {
         let result = eval(oneNumber + ' ' + mathematicSign + ' ' + twoNumber);
+        result = (Math.round(+result * 1000) / 1000).toString();
         changeScreenText(result);
         oneNumber = result;
         twoNumber = '';
