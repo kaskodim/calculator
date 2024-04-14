@@ -1,5 +1,5 @@
 function onPressOrOnClickPoint () {
-    if (mathematicSign === '') {
+    if (twoNumber === '') {
         oneNumber = addingPoint(oneNumber);
     }
     else {

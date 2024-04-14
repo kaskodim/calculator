@@ -51,8 +51,7 @@ document.getElementById('root').addEventListener('keydown', (event) => {
     }
     if (event.key === '.' || event.key === ',') {
         onPressOrOnClickPoint();
-        console.log(event.key)
-    }
+      }
     if (event.key === 'Enter') {
         onPressOrOnClickPesult ();
     }
