@@ -1,4 +1,7 @@
 function onPressOrOnClickPesult() {
+    if (oneNumber === '') {
+        return
+    }
     if (mathematicSign === '/' && twoNumber === '0') {
         showDivisionByZeroError();
     }

@@ -7,8 +7,8 @@ function onPressOrOnClickNumber(num) {
         twoNumber = '';
         input.textContent = '';
     }
-    if (mathematicSign === '' || oneNumber === '') {
 
+    if (mathematicSign === '') {
         if (oneNumber.includes('.') && oneNumber.split('.')[1].length === 3) {
             return
         }
