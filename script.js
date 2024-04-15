@@ -11,7 +11,8 @@ const btnResult = document.getElementById('buttonResult');
 const btnChangeSign = document.getElementById('buttonPolarity');
 const btnPoint = document.getElementById('buttonPoint');
 const buttons = document.getElementsByTagName('button');
-const arrbuttons = Array.from(buttons);
+const arrButtons = Array.from(buttons);
+const root = document.getElementById('root');
 
 const DIVISION_BY_ZERO = 'на 0 делить нельзя';
 const NUMBERS = '1234567890';
@@ -20,6 +21,11 @@ const SINGS = '/*-+';
 let oneNumber = '';
 let twoNumber = '';
 let mathematicSign = '';
+
+root.focus();
+root.addEventListener('click', () => {
+    root.focus();
+})
 
 btnReset.onclick = onPressOrOnClickReset;
 btnBack.onclick = onPressOrOnClickBack;
@@ -33,12 +39,13 @@ arrBtnSigns.forEach((signBtn) => {
 btnPoint.onclick = onPressOrOnClickPoint;
 btnResult.onclick = onPressOrOnClickPesult;
 
-document.getElementById('root').addEventListener('keydown', (event) => {
-    if (event.key === 'Delete' || event.key === 'Escape') {
-        onPressOrOnClickReset();
-    }
+root.addEventListener('keydown', (event) => {
     if (event.key === 'Backspace') {
         onPressOrOnClickBack();
+    }
+    if (event.repeat) return;
+    if (event.key === 'Delete' || event.key === 'Escape') {
+        onPressOrOnClickReset();
     }
     if (NUMBERS.includes(event.key)) {
         onPressOrOnClickNumber(event.key);
@@ -54,14 +61,14 @@ document.getElementById('root').addEventListener('keydown', (event) => {
     }
 })
 
-document.getElementById('root').addEventListener('keydown', (event) => {
+root.addEventListener('keydown', (event) => {
     const keyboardKey = getButton(event.key);
     if (keyboardKey !== undefined) {
         keyboardKey.classList.add('btnActive');
     }
 })
 
-document.getElementById('root').addEventListener('keyup', (event) => {
+root.addEventListener('keyup', (event) => {
     const keyboardKey = getButton(event.key);
     if (keyboardKey !== undefined) {
         keyboardKey.classList.remove('btnActive');
