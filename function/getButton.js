@@ -7,10 +7,10 @@ function getButton(key) {
         return btnBack;
     }
     else if (key === '*') {
-        return arrbuttons.find((element) => element.textContent === 'x');
+        return arrButtons.find((element) => element.textContent === 'x');
     }
     else if (key === 'Enter') {
         return btnResult;
     }
-    return arrbuttons.find((element) => element.textContent === key);
+    return arrButtons.find((element) => element.textContent === key);
 }
