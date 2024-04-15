@@ -95,3 +95,10 @@
   background: #f9b835a1;
   color: rgb(0, 0, 0);
 }
+
+.btnActive {
+  filter: brightness(85%);
+  box-shadow: inset 3px 2px 4px 3px #00000096;
+  font-size: 24px;
+  border-style: inset;
+}
