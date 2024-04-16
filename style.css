@@ -2,9 +2,14 @@
   box-sizing: border-box;
 }
 
+body {
+  background: #e6c8af;
+}
+
 #root:focus-visible {
   outline: none;
 }
+
 
 .calc {
   margin: 50px auto;
