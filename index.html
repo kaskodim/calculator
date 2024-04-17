@@ -5,20 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Простой калькулятор</title>
+    <link rel="shortcut icon" href="icon/calcIcon.png" type="image/png">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 
-    <script src="function/addingPoint.js" defer></script>
-    <script src="function/allReset.js" defer></script>
-    <script src="function/changeScreenText.js" defer></script>
-    <script src="function/onPressOrOnClickBack.js" defer></script>
-    <script src="function/onPressOrOnClickChangeSign.js" defer></script>
-    <script src="function/onPressOrOnClickNumber.js" defer></script>
-    <script src="function/onPressOrOnClickPesult.js" defer></script>
-    <script src="function/onPressOrOnClickPoint.js" defer></script>
-    <script src="function/onPressOrOnClickReset.js" defer></script>
-    <script src="function/onPressOrOnClickSingn.js" defer></script>
-    <script src="function/showDivisionByZeroError.js" defer></script>
-    <script src="function/getButton.js" defer></script>
+    <script src="functions/addingPoint.js" defer></script>
+    <script src="functions/allReset.js" defer></script>
+    <script src="functions/changeScreenText.js" defer></script>
+    <script src="functions/onPressOrOnClickBack.js" defer></script>
+    <script src="functions/onPressOrOnClickChangeSign.js" defer></script>
+    <script src="functions/onPressOrOnClickNumber.js" defer></script>
+    <script src="functions/onPressOrOnClickPesult.js" defer></script>
+    <script src="functions/onPressOrOnClickPoint.js" defer></script>
+    <script src="functions/onPressOrOnClickReset.js" defer></script>
+    <script src="functions/onPressOrOnClickSingn.js" defer></script>
+    <script src="functions/showDivisionByZeroError.js" defer></script>
+    <script src="functions/getButton.js" defer></script>
 
     <script src="script.js" defer></script>
 </head>
@@ -28,6 +31,7 @@
         <div class="calc">
             <div class="grid">
                 <div class="screen">
+                    <p class="currentInfo" id="currentInfo"></p>
                     <p class="currentValue" id="currentValue"></p>
                 </div>
 
