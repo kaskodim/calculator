@@ -1,4 +1,4 @@
 function changeScreenText(screenText) {
-    input.classList.remove('error');
-    input.textContent = screenText;
+    currentValue.classList.remove('error');
+    currentValue.textContent = screenText;
 }

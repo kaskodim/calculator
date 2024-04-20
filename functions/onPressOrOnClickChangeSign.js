@@ -1,4 +1,6 @@
 function onPressOrOnClickChangeSign() {
+    deleteErrorCurrentValue();
+
     if (oneNumber[0] === '-' && twoNumber === '') {
         oneNumber = oneNumber.slice(1);
         changeScreenText(oneNumber);

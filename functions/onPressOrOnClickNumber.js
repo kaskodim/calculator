@@ -1,15 +1,26 @@
 function onPressOrOnClickNumber(num) {
+    deleteCurrentInfo();
+    deleteErrorCurrentValue();
+
     if (oneNumber === '0') {
         oneNumber = '';
-        input.textContent = '';
+        currentValue.textContent = '';
     }
     if (twoNumber === '0') {
         twoNumber = '';
-        input.textContent = '';
+        currentValue.textContent = '';
     }
-
+    if (resultValue !== '' && mathematicSign === '') {
+        oneNumber = '';
+        resultValue = '';
+    }
     if (mathematicSign === '') {
         if (oneNumber.includes('.') && oneNumber.split('.')[1].length === 3) {
+            currentInfo.textContent = 'только 3 цифры после запятой';
+            return
+        }
+        if (oneNumber.split('.')[0].length === 12) {
+            currentInfo.textContent = 'только 12 символов';
             return
         }
 
@@ -19,6 +30,11 @@ function onPressOrOnClickNumber(num) {
     }
     else {
         if (twoNumber.includes('.') && twoNumber.split('.')[1].length === 3) {
+            currentInfo.textContent = 'только 3 цифры после запятой'
+            return
+        }
+        if (twoNumber.split('.')[0].length === 12 && !twoNumber.includes('.')) {
+            currentInfo.textContent = 'только 12 символов';
             return
         }
 

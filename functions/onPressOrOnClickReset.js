@@ -1,4 +1,4 @@
 function onPressOrOnClickReset() {
-    input.textContent = '';
+    currentValue.textContent = '';
     allReset();
 }

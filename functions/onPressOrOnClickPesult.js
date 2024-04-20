@@ -1,5 +1,7 @@
 function onPressOrOnClickPesult() {
-    if (oneNumber === '') {
+    deleteCurrentInfo();
+
+    if (oneNumber === '' || mathematicSign === '' || twoNumber === '') {
         return
     }
     if (mathematicSign === '/' && twoNumber === '0') {
@@ -8,9 +10,17 @@ function onPressOrOnClickPesult() {
     else {
         let result = eval(oneNumber + ' ' + mathematicSign + ' ' + twoNumber);
         result = (Math.round(+result * 1000) / 1000).toString();
-        changeScreenText(result);
-        oneNumber = result;
-        mathematicSign = '';
-        twoNumber = '';
+        if ((result.toString()).length <= 12) {
+            changeScreenText(result);
+            oneNumber = result;
+            resultValue = result;
+            mathematicSign = '';
+            twoNumber = '';
+        }
+        else {
+            currentInfo.textContent = ERROR_INFO;
+            changeScreenText(ERROR);
+            return
+        }
     }
 }
