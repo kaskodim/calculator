@@ -1,6 +1,6 @@
 function onPressOrOnClickSingn(sign) {
-    deleteCurrentInfo();
     deleteErrorCurrentValue();
+    currentInfo.textContent = '';
 
     if (oneNumber === '' && sign === '-') {
         btnChangeSign.onclick();
@@ -13,7 +13,7 @@ function onPressOrOnClickSingn(sign) {
     if (oneNumber !== '' && mathematicSign !== '' && twoNumber !== '') {
         let result = eval(oneNumber + ' ' + mathematicSign + ' ' + twoNumber);
         result = (Math.round(+result * 1000) / 1000).toString();
-        if ((result.toString()).length <= 12) {
+        if ((result.toString()).length <= MAX_DIGITS) {
             changeScreenText(result);
             oneNumber = result;
             twoNumber = '';

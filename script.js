@@ -21,6 +21,11 @@ const SINGS = '/*-+';
 const ERROR = 'ошибка';
 const ERROR_INFO = 'ограничение символов для результата';
 
+const MAX_DIGITS = 11; 
+const INFO_NUMBER_OF_DIGITS = `только ${MAX_DIGITS} символов`;
+const NUMBER_AFTER_THE_POINT = 3;
+const INFO_NUMBER_AFTER_THE_POINT = 'только 3 цифры после запятой';
+
 let oneNumber = '';
 let twoNumber = '';
 let mathematicSign = '';
@@ -78,3 +83,4 @@ root.addEventListener('keyup', (event) => {
         keyboardKey.classList.remove('btnActive');
     }
 })
+

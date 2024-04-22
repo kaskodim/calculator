@@ -1,6 +1,6 @@
 function onPressOrOnClickPoint() {
-    deleteCurrentInfo();
     deleteErrorCurrentValue();
+    currentInfo.textContent = '';
 
     if (oneNumber !== '' && mathematicSign !== '' && twoNumber === '') {
         return

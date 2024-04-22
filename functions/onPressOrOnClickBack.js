@@ -1,5 +1,5 @@
 function onPressOrOnClickBack() {
-    deleteCurrentInfo();
+    currentInfo.textContent = '';
     if (currentValue.textContent === DIVISION_BY_ZERO || currentValue.textContent === ERROR) {
         currentValue.textContent = '';
         allReset();

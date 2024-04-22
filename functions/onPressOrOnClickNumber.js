@@ -1,7 +1,8 @@
 function onPressOrOnClickNumber(num) {
-    deleteCurrentInfo();
     deleteErrorCurrentValue();
+    currentInfo.textContent = '';
 
+    // не позволяет вводить несколько "0" перед числом
     if (oneNumber === '0') {
         oneNumber = '';
         currentValue.textContent = '';
@@ -10,35 +11,49 @@ function onPressOrOnClickNumber(num) {
         twoNumber = '';
         currentValue.textContent = '';
     }
+
+    //  если нажата кнопка "=" первое число набирает заново
     if (resultValue !== '' && mathematicSign === '') {
         oneNumber = '';
         resultValue = '';
     }
+
+    // при отсутвующем знаке набирает первое число
     if (mathematicSign === '') {
-        if (oneNumber.includes('.') && oneNumber.split('.')[1].length === 3) {
-            currentInfo.textContent = 'только 3 цифры после запятой';
-            return
-        }
-        if (oneNumber.split('.')[0].length === 12) {
-            currentInfo.textContent = 'только 12 символов';
+
+        // ограничивает количество символов после запятой первого числа
+        if (oneNumber.includes('.') && oneNumber.split('.')[1].length === NUMBER_AFTER_THE_POINT) {
+            currentInfo.textContent = INFO_NUMBER_AFTER_THE_POINT;
             return
         }
 
-        oneNumber = oneNumber + num;
+        //  ограничивает количество символов первого целого числа
+        if (oneNumber.split('.')[0].length === MAX_DIGITS) {
+            currentInfo.textContent = INFO_NUMBER_OF_DIGITS;
+            return
+        }
+
+        // набирает первое число
+        oneNumber = `${oneNumber}${num}`;
         oneNumber = (Math.round(+oneNumber * 1000) / 1000).toString();
         changeScreenText(oneNumber);
     }
+
+    // набирает второе число
     else {
-        if (twoNumber.includes('.') && twoNumber.split('.')[1].length === 3) {
-            currentInfo.textContent = 'только 3 цифры после запятой'
+        // ограничивает количество символов после запятой второго числа
+        if (twoNumber.includes('.') && twoNumber.split('.')[1].length === NUMBER_AFTER_THE_POINT) {
+            currentInfo.textContent = INFO_NUMBER_AFTER_THE_POINT;
             return
         }
-        if (twoNumber.split('.')[0].length === 12 && !twoNumber.includes('.')) {
-            currentInfo.textContent = 'только 12 символов';
+        //  ограничивает количество символов второго целого числа
+        if (twoNumber.split('.')[0].length === MAX_DIGITS && !twoNumber.includes('.')) {
+            currentInfo.textContent = INFO_NUMBER_OF_DIGITS;
             return
         }
 
-        twoNumber = twoNumber + num;
+        // набирает второе число
+        twoNumber = `${twoNumber}${num}`;
         twoNumber = (Math.round(+twoNumber * 1000) / 1000).toString();
         changeScreenText(twoNumber);
     }

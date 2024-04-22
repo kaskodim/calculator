@@ -1,5 +1,5 @@
 function onPressOrOnClickPesult() {
-    deleteCurrentInfo();
+    currentInfo.textContent = '';
 
     if (oneNumber === '' || mathematicSign === '' || twoNumber === '') {
         return
@@ -10,7 +10,7 @@ function onPressOrOnClickPesult() {
     else {
         let result = eval(oneNumber + ' ' + mathematicSign + ' ' + twoNumber);
         result = (Math.round(+result * 1000) / 1000).toString();
-        if ((result.toString()).length <= 12) {
+        if ((result.toString()).length <= MAX_DIGITS) {
             changeScreenText(result);
             oneNumber = result;
             resultValue = result;

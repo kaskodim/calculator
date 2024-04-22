@@ -4,6 +4,12 @@
 
 body {
   background: #e6c8af;
+  margin: 0;
+}
+
+#root {
+  height: 100vh;
+  padding: 50px;
 }
 
 #root:focus-visible {
@@ -11,7 +17,7 @@ body {
 }
 
 .calc {
-  margin: 50px auto;
+  margin: 0 auto;
   width: fit-content;
   border: 1px solid black;
   border-radius: 10px;
