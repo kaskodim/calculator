@@ -1,4 +1,6 @@
-const input = document.getElementById('currentValue');
+const root = document.getElementById('root');
+const currentValue = document.getElementById('currentValue');
+const currentInfo = document.getElementById('currentInfo');
 /*  получает кнопки по общему классу в коллекцию   */
 const numberBtns = document.getElementsByClassName('numberButton');
 /*  коллекцию в массив  */
@@ -12,15 +14,23 @@ const btnChangeSign = document.getElementById('buttonPolarity');
 const btnPoint = document.getElementById('buttonPoint');
 const buttons = document.getElementsByTagName('button');
 const arrButtons = Array.from(buttons);
-const root = document.getElementById('root');
 
 const DIVISION_BY_ZERO = 'на 0 делить нельзя';
 const NUMBERS = '1234567890';
 const SINGS = '/*-+';
+const ERROR = 'ошибка';
+const ERROR_INFO = 'ограничение символов для результата';
+
+const MAX_DIGITS = 11;
+const INFO_NUMBER_OF_DIGITS = `только ${MAX_DIGITS} символов`;
+const NUMBER_AFTER_THE_POINT = 3;
+const ROUND_AFTER_THE_POINT = 10 ** NUMBER_AFTER_THE_POINT;
+const INFO_NUMBER_AFTER_THE_POINT = `только ${NUMBER_AFTER_THE_POINT} цифры после запятой`;
 
 let oneNumber = '';
 let twoNumber = '';
 let mathematicSign = '';
+let resultValue = '';
 
 root.focus();
 root.addEventListener('click', () => {
@@ -74,3 +84,4 @@ root.addEventListener('keyup', (event) => {
         keyboardKey.classList.remove('btnActive');
     }
 })
+

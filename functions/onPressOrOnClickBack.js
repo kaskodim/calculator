@@ -1,14 +1,15 @@
 function onPressOrOnClickBack() {
-    if (input.textContent === DIVISION_BY_ZERO) {
-        input.textContent = '';
+    currentInfo.textContent = '';
+    if (currentValue.textContent === DIVISION_BY_ZERO || currentValue.textContent === ERROR) {
+        currentValue.textContent = '';
         allReset();
     }
     if (twoNumber === '') {
-        changeScreenText(input.textContent.slice(0, -1));
-        oneNumber = input.textContent;
+        changeScreenText(currentValue.textContent.slice(0, -1));
+        oneNumber = currentValue.textContent;
     }
     else {
-        changeScreenText(input.textContent.slice(0, -1));
-        twoNumber = input.textContent;
+        changeScreenText(currentValue.textContent.slice(0, -1));
+        twoNumber = currentValue.textContent;
     }
 }

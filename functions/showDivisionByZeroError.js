@@ -1,5 +1,6 @@
 function showDivisionByZeroError() {
-    input.textContent = DIVISION_BY_ZERO;
-    input.classList.add('error');
     allReset();
+    currentValue.textContent = ERROR;
+    currentValue.classList.add('error');
+    currentInfo.textContent = DIVISION_BY_ZERO;
 }

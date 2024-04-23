@@ -1,4 +1,3 @@
-
 function getButton(key) {
     if (key === 'Delete' || key === 'Escape') {
         return btnReset;
