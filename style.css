@@ -25,6 +25,21 @@ body {
   box-shadow: inset -2px -3px 20px 0px #00000096, 10px 10px 13px 0px #00000096;
 }
 
+.grid {
+  display: grid;
+  grid-template-areas:
+    "input input input input"
+    "sound sound sound sound"
+    "1 2 3 4"
+    "5 6 7 8"
+    "9 10 11 12"
+    "13 14 15 16"
+    "17 18 btnResult btnResult";
+  padding: 10px;
+  justify-content: center;
+  gap: 10px;
+}
+
 .screen {
   grid-area: input;
   height: 100px;
@@ -58,23 +73,17 @@ body {
   color: red;
 }
 
-.grid {
-  display: grid;
-  grid-template-areas:
-    "input input input input"
-    "1 2 3 4"
-    "5 6 7 8"
-    "9 10 11 12"
-    "13 14 15 16"
-    "17 18 btnResult btnResult";
-  padding: 10px;
-  justify-content: center;
-  gap: 10px;
+.sound {
+  grid-area: sound;
+  padding: 2px;
+  display: flex;
+  font-size: 25px;
+  user-select: none;
 }
 
 .btn {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   border-radius: 10px;
   background: #FCE88F;
   font-size: 25px;
@@ -84,18 +93,15 @@ body {
   box-shadow: 3px 4px 3px 0px #00000096;
 }
 
-.btn:hover {
+.btn:hover:not(.btnActive) {
   filter: brightness(120%);
 }
 
-.btn:active {
+.btnActive {
   filter: brightness(85%);
   box-shadow: inset 3px 2px 4px 3px #00000096;
   font-size: 24px;
-}
-
-.btn:disabled {
-  opacity: 35%;
+  border-style: inset;
 }
 
 .btnResult {
@@ -113,11 +119,4 @@ body {
 .btnSigns {
   background: #f9b835a1;
   color: rgb(0, 0, 0);
-}
-
-.btnActive {
-  filter: brightness(85%);
-  box-shadow: inset 3px 2px 4px 3px #00000096;
-  font-size: 24px;
-  border-style: inset;
 }
