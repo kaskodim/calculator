@@ -14,6 +14,9 @@ const btnChangeSign = document.getElementById('buttonPolarity');
 const btnPoint = document.getElementById('buttonPoint');
 const buttons = document.getElementsByTagName('button');
 const arrButtons = Array.from(buttons);
+const soundCheckbox = document.getElementById('sound');
+const audioPressDown = new Audio('./audio/pressDown.wav');
+const audioPressUp = new Audio('./audio/pressUp.wav');
 
 const DIVISION_BY_ZERO = 'на 0 делить нельзя';
 const NUMBERS = '1234567890';
@@ -71,17 +74,7 @@ root.addEventListener('keydown', (event) => {
     }
 })
 
-root.addEventListener('keydown', (event) => {
-    const keyboardKey = getButton(event.key);
-    if (keyboardKey !== undefined) {
-        keyboardKey.classList.add('btnActive');
-    }
-})
-
-root.addEventListener('keyup', (event) => {
-    const keyboardKey = getButton(event.key);
-    if (keyboardKey !== undefined) {
-        keyboardKey.classList.remove('btnActive');
-    }
-})
-
+root.addEventListener('keydown', pressOrClick);
+root.addEventListener('keyup', pressOrClick);
+root.addEventListener('mousedown', pressOrClick);
+root.addEventListener('mouseup', pressOrClick);

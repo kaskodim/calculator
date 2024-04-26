@@ -22,8 +22,9 @@
     <script src="functions/onPressOrOnClickSingn.js" defer></script>
     <script src="functions/showDivisionByZeroError.js" defer></script>
     <script src="functions/getButton.js" defer></script>
-    <script src="functions/deleteCurrentInfo.js" defer></script>
     <script src="functions/deleteErrorCurrentValue.js" defer></script>
+    <script src="functions/pressOrClick.js" defer></script>
+    <script src="functions/playSound.js" defer></script>
 
     <script src="script.js" defer></script>
 </head>
@@ -35,6 +36,12 @@
                 <div class="screen">
                     <div class="currentInfo" id="currentInfo"></div>
                     <div class="currentValue" id="currentValue"></div>
+                </div>
+
+                <div class="sound">
+                    <label for="sound">
+                        <input type="checkbox" id="sound" checked> звук
+                    </label>
                 </div>
 
                 <button class="btn btnRes" id="buttonReset">C</button>
