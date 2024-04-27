@@ -29,13 +29,13 @@ body {
   display: grid;
   grid-template-areas:
     "input input input input"
-    "sound sound sound sound"
+    "sound sound back reset"
     "1 2 3 4"
-    "5 6 7 8"
-    "9 10 11 12"
-    "13 14 15 16"
-    "17 18 btnResult btnResult";
-  padding: 10px;
+    "5 6 7 plus"
+    "9 10 11 plus"
+    "13 14 15 btnResult"
+    "zero zero 19 btnResult";
+  padding: 14px;
   justify-content: center;
   gap: 10px;
 }
@@ -46,7 +46,7 @@ body {
   border: 1px solid black;
   border-radius: 10px;
   background: #b6dbf8;
-  box-shadow: inset 2px 4px 6px 0px #00000096;
+  box-shadow: inset 3px 4px 6px 0px #00000096;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -83,7 +83,7 @@ body {
 
 .btn {
   width: 60px;
-  height: 60px;
+  height: 50px;
   border-radius: 10px;
   background: #FCE88F;
   font-size: 25px;
@@ -104,10 +104,24 @@ body {
   border-style: inset;
 }
 
+.buttonPlus{
+  grid-area: plus;
+  height: 100%;
+}
+
+.buttonFive{
+  text-decoration: underline;
+} 
+
 .btnResult {
   grid-area: btnResult;
-  width: 100%;
+  height: 100%;
   background: #F98E35;
+}
+
+.buttonZero{
+  grid-area: zero;
+  width: 100%;
 }
 
 .btnRes {
