@@ -1,5 +1,5 @@
 function pressOrClick(event) {
-    let buttonUp = arrButtons.find((btn) => btn.classList.contains('btnActive'));
+    const buttonUp = arrButtons.find((btn) => btn.classList.contains('btnActive'));
 
     if ((event.type === 'mouseup' || event.type === 'keyup') && buttonUp !== undefined) {
         buttonUp.classList.remove('btnActive');
@@ -7,7 +7,7 @@ function pressOrClick(event) {
         return
     }
 
-    let buttonDown = getButton(event.key) || arrButtons.find((btn) => btn === event.target);
+    const buttonDown = getButton(event.key) || arrButtons.find((btn) => btn === event.target);
 
     if (buttonDown === undefined) {
         return

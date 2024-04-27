@@ -35,7 +35,9 @@ function onPressOrOnClickNumber(num) {
 
         // набирает первое число
         oneNumber = `${oneNumber}${num}`;
-        oneNumber = (Math.round(+oneNumber * ROUND_AFTER_THE_POINT) / ROUND_AFTER_THE_POINT).toString();
+        if (oneNumber.slice(-1) !== '0') {
+            oneNumber = (Math.round(+oneNumber * ROUND_AFTER_THE_POINT) / ROUND_AFTER_THE_POINT).toString();
+        }
         changeScreenText(oneNumber);
     }
 
@@ -54,7 +56,9 @@ function onPressOrOnClickNumber(num) {
 
         // набирает второе число
         twoNumber = `${twoNumber}${num}`;
-        twoNumber = (Math.round(+twoNumber * ROUND_AFTER_THE_POINT) / ROUND_AFTER_THE_POINT).toString();
+        if (twoNumber.slice(-1) !== '0') {
+            twoNumber = (Math.round(+twoNumber * ROUND_AFTER_THE_POINT) / ROUND_AFTER_THE_POINT).toString();
+        }
         changeScreenText(twoNumber);
     }
 }
