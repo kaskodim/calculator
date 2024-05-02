@@ -1,9 +1,9 @@
 const root = document.getElementById('root');
 const currentValue = document.getElementById('currentValue');
 const currentInfo = document.getElementById('currentInfo');
-/*  получает кнопки по общему классу в коллекцию   */
+//  получает кнопки по общему классу в коллекцию
 const numberBtns = document.getElementsByClassName('numberButton');
-/*  коллекцию в массив  */
+//  коллекцию в массив 
 const arrNumberBtns = Array.from(numberBtns);
 const btnSigns = document.getElementsByClassName('btnMathSigns');
 const arrBtnSigns = Array.from(btnSigns);
