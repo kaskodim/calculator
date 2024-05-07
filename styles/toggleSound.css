@@ -1,0 +1,119 @@
+.toggleWrapper {
+    min-width: 70px;
+    height: 40px;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-image: linear-gradient(to bottom, #636f89, #a8b7d7);
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+
+}
+
+.toggleCheckbox {
+    appearance: none;
+    display: none;
+
+}
+
+.toggleContainer {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #9baacb;
+    border-radius: 6px;
+    box-shadow:
+        inset 0 0 0.0625em 0.125em rgba(255, 255, 255, 0.2),
+        inset 0 0.0625em 0.125em rgba(0, 0, 0, 0.4);
+}
+
+.toggleSwitch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #cdad6f;
+    width: 25px;
+    height: 100%;
+    border-radius: 4px;
+    position: relative;
+    left: 0;
+    box-shadow:
+        inset 0 -0.0625em 0.0625em 0.125em rgba(0, 0, 0, 0.1),
+        inset 0 -0.125em 0.0625em rgba(0, 0, 0, 0.2),
+        inset 0 0.1875em 0.0625em rgba(255, 255, 255, 0.3), 0 0.125em 0.125em rgba(0, 0, 0, 0.5);
+    transition: 0.4s;
+}
+
+.toggleCheckbox:checked+.toggleContainer>.toggleSwitch {
+    left: 36px;
+}
+
+.toggleSwitchRectangle {
+    width: 10px;
+    height: calc(100% - 6px);
+    background: rgb(150, 150, 152);
+    border-radius: 1px;
+    box-shadow:
+        inset 0 -0.0625em 0.0625em 0.125em rgba(0, 0, 0, 0.1),
+        inset 0 -0.125em 0.0625em rgba(0, 0, 0, 0.2),
+        inset 0 0.1875em 0.0625em rgba(255, 255, 255, 0.3), 0 0.125em 0.125em rgba(0, 0, 0, 0.5);
+}
+
+
+.toggleContainer::before {
+    content: '';
+    position: absolute;
+    left: 80px;
+    top: 0px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: radial-gradient(circle at 35% 35%, #858585, rgb(233, 233, 233));
+    box-shadow: 0px 0px 4px black;
+   
+}
+
+.toggleContainer::after {
+    content: '';
+    position: absolute;
+    left: 81px;
+    top: 0px;
+    margin: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 10px;
+    background-image: radial-gradient(circle at 35% 35%, #dddddd, rgb(27, 27, 27));
+    box-shadow: 0px 0px 4px black;
+}
+
+
+.toggleCheckbox:checked+.toggleContainer::after {
+    /* background-image: radial-gradient(circle at 35% 35%, #24ff54, rgb(0, 32, 7)); */
+    animation:light 1s linear forwards;
+}
+
+
+@keyframes light{
+    from {
+        background-image: radial-gradient(circle at 35% 35%, #dddddd, rgb(27, 27, 27));
+
+    }
+    to {
+        background-image: radial-gradient(circle at 35% 35%, #24ff54, rgb(0, 32, 7));
+
+    }
+  }
+
+.toggleText {
+    font-size: 20px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    display: flex;
+    align-items: end;
+}

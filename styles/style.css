@@ -29,7 +29,7 @@ body {
   display: grid;
   grid-template-areas:
     "input input input input"
-    "sound sound back reset"
+    "toggle toggle back reset"
     "1 2 3 4"
     "5 6 7 plus"
     "9 10 11 plus"
@@ -38,6 +38,13 @@ body {
   padding: 14px;
   justify-content: center;
   gap: 10px;
+}
+
+.screen, .toggleText {
+  font-family: "Alumni Sans", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  user-select: none;
 }
 
 .screen {
@@ -52,10 +59,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   text-align: end;
-  font-family: "Alumni Sans", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-  user-select: none;
+
 }
 
 .currentInfo {
@@ -73,13 +77,14 @@ body {
   color: red;
 }
 
-.sound {
-  grid-area: sound;
-  padding: 2px;
+/* ---------------------------------- */
+.toggle {
+  grid-area: toggle;
   display: flex;
-  font-size: 25px;
   user-select: none;
+
 }
+/* ------------------------------------- */
 
 .btn {
   width: 60px;

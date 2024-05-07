@@ -14,7 +14,7 @@ const btnChangeSign = document.getElementById('buttonPolarity');
 const btnPoint = document.getElementById('buttonPoint');
 const buttons = document.getElementsByTagName('button');
 const arrButtons = Array.from(buttons);
-const soundCheckbox = document.getElementById('sound');
+const soundCheckbox = document.getElementById('toggle');
 const audioPressDown = new Audio('./audio/pressDown.wav');
 const audioPressUp = new Audio('./audio/pressUp.wav');
 
