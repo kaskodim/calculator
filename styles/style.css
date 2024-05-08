@@ -40,7 +40,8 @@ body {
   gap: 10px;
 }
 
-.screen, .toggleText {
+.screen,
+.toggleText {
   font-family: "Alumni Sans", sans-serif;
   font-weight: 500;
   font-style: normal;
@@ -59,7 +60,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   text-align: end;
-
 }
 
 .currentInfo {
@@ -77,14 +77,12 @@ body {
   color: red;
 }
 
-/* ---------------------------------- */
 .toggle {
   grid-area: toggle;
   display: flex;
+  align-items: center;
   user-select: none;
-
 }
-/* ------------------------------------- */
 
 .btn {
   width: 60px;
@@ -109,14 +107,14 @@ body {
   border-style: inset;
 }
 
-.buttonPlus{
+.buttonPlus {
   grid-area: plus;
   height: 100%;
 }
 
-.buttonFive{
+.buttonFive {
   text-decoration: underline;
-} 
+}
 
 .btnResult {
   grid-area: btnResult;
@@ -124,7 +122,7 @@ body {
   background: #F98E35;
 }
 
-.buttonZero{
+.buttonZero {
   grid-area: zero;
   width: 100%;
 }
