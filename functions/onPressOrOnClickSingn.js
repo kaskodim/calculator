@@ -8,6 +8,7 @@ function onPressOrOnClickSingn(sign) {
     }
     if (mathematicSign === '/' && twoNumber === '0') {
         showDivisionByZeroError();
+        playSound(audioError)
         return
     }
     if (oneNumber !== '' && mathematicSign !== '' && twoNumber !== '') {
@@ -21,6 +22,8 @@ function onPressOrOnClickSingn(sign) {
         else {
             currentInfo.textContent = ERROR_INFO;
             changeScreenText(ERROR);
+            playSound(audioError);
+
             return
         }
     }

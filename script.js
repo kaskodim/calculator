@@ -15,18 +15,24 @@ const btnPoint = document.getElementById('buttonPoint');
 const buttons = document.getElementsByTagName('button');
 const arrButtons = Array.from(buttons);
 const soundCheckbox = document.getElementById('toggle');
+
 const audioPressDown = new Audio('./audio/pressDown.wav');
 const audioPressUp = new Audio('./audio/pressUp.wav');
+const audioToggleOn = new Audio('./audio/toggleSoundOn.wav');
+const audioToggleOff = new Audio('./audio/toggleSoundOff.wav');
+const audioError = new Audio('./audio/error.wav');
+const audioInfo = new Audio('./audio/info.wav');
 
-const DIVISION_BY_ZERO = 'на 0 делить нельзя';
+const MAX_DIGITS = 11;
+const NUMBER_AFTER_THE_POINT = 3;
 const NUMBERS = '1234567890';
 const SINGS = '/*-+';
+const ROUND_AFTER_THE_POINT = 10 ** NUMBER_AFTER_THE_POINT;
+
+const DIVISION_BY_ZERO = 'на 0 делить нельзя';
 const ERROR = 'ошибка';
 const ERROR_INFO = 'ограничение символов для результата';
-const MAX_DIGITS = 11;
 const INFO_NUMBER_OF_DIGITS = `только ${MAX_DIGITS} символов`;
-const NUMBER_AFTER_THE_POINT = 3;
-const ROUND_AFTER_THE_POINT = 10 ** NUMBER_AFTER_THE_POINT;
 const INFO_NUMBER_AFTER_THE_POINT = `только ${NUMBER_AFTER_THE_POINT} цифры после запятой`;
 const CHECK_SOUND = 'checkSound';
 
@@ -52,6 +58,7 @@ switch (JSON.parse(localStorage.getItem(CHECK_SOUND))) {
 }
 soundCheckbox.onclick = () => {
     localStorage.setItem(CHECK_SOUND, JSON.stringify(soundCheckbox.checked));
+    playToggle();
 }
 
 btnReset.onclick = onPressOrOnClickReset;
