@@ -82,6 +82,7 @@ body {
   display: flex;
   align-items: center;
   user-select: none;
+  --toggle-font-size: 20px;
 }
 
 .btn {
