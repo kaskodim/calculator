@@ -1,14 +1,18 @@
-function onPressOrOnClickPoint() {
+import { deleteErrorCurrentValue } from './deleteErrorCurrentValue.js';
+import { addingPoint } from './addingPoint.js';
+import { currentInfo, state } from '../constants.js';
+
+export function onPressOrOnClickPoint() {
     deleteErrorCurrentValue();
     currentInfo.textContent = '';
 
-    if (oneNumber !== '' && mathematicSign !== '' && twoNumber === '') {
+    if (state.oneNumber !== '' && state.mathematicSign !== '' && state.twoNumber === '') {
         return
     }
-    if (twoNumber === '') {
-        oneNumber = addingPoint(oneNumber);
+    if (state.twoNumber === '') {
+        state.oneNumber = addingPoint(state.oneNumber);
     }
     else {
-        twoNumber = addingPoint(twoNumber);
+        state.twoNumber = addingPoint(state.twoNumber);
     }
 }

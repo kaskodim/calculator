@@ -1,4 +1,8 @@
-function pressOrClick(event) {
+import { playSound } from './playSound.js';
+import { getButton } from './getButton.js';
+import { arrButtons, audioPressUp, audioPressDown } from '../constants.js';
+
+export function pressOrClick(event) {
     const buttonUp = arrButtons.find((btn) => btn.classList.contains('btnActive'));
 
     if ((event.type === 'mouseup' || event.type === 'keyup') && buttonUp !== undefined) {

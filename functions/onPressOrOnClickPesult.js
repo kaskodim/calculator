@@ -1,22 +1,35 @@
-function onPressOrOnClickPesult() {
+import { showDivisionByZeroError } from './showDivisionByZeroError.js';
+import { playSound } from './playSound.js';
+import { changeScreenText } from './changeScreenText.js';
+import {
+    currentInfo,
+    state,
+    MAX_DIGITS,
+    ROUND_AFTER_THE_POINT,
+    ERROR_INFO,
+    ERROR,
+    audioError,
+} from '../constants.js';
+
+export function onPressOrOnClickPesult() {
     currentInfo.textContent = '';
 
-    if (oneNumber === '' || mathematicSign === '' || twoNumber === '') {
+    if (state.oneNumber === '' || state.mathematicSign === '' || state.twoNumber === '') {
         return
     }
-    if (mathematicSign === '/' && twoNumber === '0') {
+    if (state.mathematicSign === '/' && state.twoNumber === '0') {
         showDivisionByZeroError();
         playSound(audioError);
     }
     else {
-        let result = eval(oneNumber + ' ' + mathematicSign + ' ' + twoNumber);
+        let result = eval(state.oneNumber + ' ' + state.mathematicSign + ' ' + state.twoNumber);
         result = (Math.round(+result * ROUND_AFTER_THE_POINT) / ROUND_AFTER_THE_POINT).toString();
         if ((result.toString()).length <= MAX_DIGITS) {
             changeScreenText(result);
-            oneNumber = result;
-            resultValue = result;
-            mathematicSign = '';
-            twoNumber = '';
+            state.oneNumber = result;
+            state.resultValue = result;
+            state.mathematicSign = '';
+            state.twoNumber = '';
         }
         else {
             currentInfo.textContent = ERROR_INFO;
