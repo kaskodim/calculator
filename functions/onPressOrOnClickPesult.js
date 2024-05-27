@@ -6,6 +6,7 @@ function onPressOrOnClickPesult() {
     }
     if (mathematicSign === '/' && twoNumber === '0') {
         showDivisionByZeroError();
+        playSound(audioError);
     }
     else {
         let result = eval(oneNumber + ' ' + mathematicSign + ' ' + twoNumber);
@@ -20,6 +21,7 @@ function onPressOrOnClickPesult() {
         else {
             currentInfo.textContent = ERROR_INFO;
             changeScreenText(ERROR);
+            playSound(audioError);
         }
     }
 }

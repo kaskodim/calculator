@@ -11,7 +11,7 @@ function getButton(key) {
     else if (key === 'Enter') {
         return btnResult;
     }
-    else if (key === ','){
+    else if (key === ',') {
         return btnPoint;
     }
     return arrButtons.find((element) => element.textContent === key);

@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Простой калькулятор</title>
     <link rel="shortcut icon" href="icon/calculatorIcon.png" type="image/png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/toggleSound.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 
@@ -25,6 +27,7 @@
     <script src="functions/deleteErrorCurrentValue.js" defer></script>
     <script src="functions/pressOrClick.js" defer></script>
     <script src="functions/playSound.js" defer></script>
+    <script src="functions/playToggle.js" defer></script>
 
     <script src="script.js" defer></script>
 </head>
@@ -38,13 +41,20 @@
                     <div class="currentValue" id="currentValue"></div>
                 </div>
 
-                <div class="sound">
-                    <label for="sound">
-                        <input type="checkbox" id="sound" checked> звук
-                    </label>
-                </div>
+                <label for="toggle" class="toggle">
+                    <div class="toggleWrapper">
+                        <input class="toggleCheckbox" type="checkbox" id="toggle">
+                        <div class="toggleContainer">
+                            <div class="toggleSwitch">
+                                <div class="toggleSwitchRectangle"></div>
+                            </div>
+                            <div class="toggleText">звук</div>
+                        </div>
+                    </div>
+                 
+                </label>
 
-                <button class="btn btnSigns" id="buttonBackspace">&#60=</button>
+                <button class="btn btnSigns" id="buttonBackspace">⇐</button>
                 <button class="btn btnRes" id="buttonReset">C</button>
 
                 <button class="btn btnSigns" id="buttonPolarity">+/-</button>
@@ -65,7 +75,7 @@
                 <button class="btn numberButton">2</button>
                 <button class="btn numberButton">3</button>
                 <button class="btn btnResult" id="buttonResult">=</button>
-                
+
                 <button class="btn numberButton buttonZero">0</button>
                 <button class="btn btnSigns" id="buttonPoint">.</button>
             </div>
