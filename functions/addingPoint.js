@@ -1,4 +1,6 @@
-function addingPoint(variable) {
+import { changeScreenText } from './changeScreenText.js';
+
+export function addingPoint(variable) {
     if (variable.includes('.')) {
         return variable;
     }

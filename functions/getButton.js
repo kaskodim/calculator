@@ -1,4 +1,6 @@
-function getButton(key) {
+import { btnReset, btnBack, arrButtons, btnResult, btnPoint } from '../constants.js';
+
+export function getButton(key) {
     if (key === 'Delete' || key === 'Escape') {
         return btnReset;
     }

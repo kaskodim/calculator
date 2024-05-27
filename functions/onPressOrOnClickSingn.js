@@ -1,23 +1,38 @@
-function onPressOrOnClickSingn(sign) {
+import { deleteErrorCurrentValue } from './deleteErrorCurrentValue.js';
+import { showDivisionByZeroError } from './showDivisionByZeroError.js';
+import { playSound } from './playSound.js';
+import { changeScreenText } from './changeScreenText.js';
+import {
+    currentInfo,
+    state,
+    ROUND_AFTER_THE_POINT,
+    btnChangeSign,
+    MAX_DIGITS,
+    ERROR_INFO,
+    ERROR,
+    audioError,
+} from '../constants.js';
+
+export function onPressOrOnClickSingn(sign) {
     deleteErrorCurrentValue();
     currentInfo.textContent = '';
 
-    if (oneNumber === '' && sign === '-') {
+    if (state.oneNumber === '' && sign === '-') {
         btnChangeSign.onclick();
         return;
     }
-    if (mathematicSign === '/' && twoNumber === '0') {
+    if (state.mathematicSign === '/' && state.twoNumber === '0') {
         showDivisionByZeroError();
         playSound(audioError)
         return
     }
-    if (oneNumber !== '' && mathematicSign !== '' && twoNumber !== '') {
-        let result = eval(oneNumber + ' ' + mathematicSign + ' ' + twoNumber);
+    if (state.oneNumber !== '' && state.mathematicSign !== '' && state.twoNumber !== '') {
+        let result = eval(state.oneNumber + ' ' + state.mathematicSign + ' ' + state.twoNumber);
         result = (Math.round(+result * ROUND_AFTER_THE_POINT) / ROUND_AFTER_THE_POINT).toString();
         if ((result.toString()).length <= MAX_DIGITS) {
             changeScreenText(result);
-            oneNumber = result;
-            twoNumber = '';
+            state.oneNumber = result;
+            state.twoNumber = '';
         }
         else {
             currentInfo.textContent = ERROR_INFO;
@@ -28,12 +43,12 @@ function onPressOrOnClickSingn(sign) {
         }
     }
 
-    mathematicSign = sign;
+    state.mathematicSign = sign;
 
-    if (oneNumber === '') {
-        mathematicSign = '';
+    if (state.oneNumber === '') {
+        state.mathematicSign = '';
     }
     else if (sign === 'x') {
-        mathematicSign = '*';
+        state.mathematicSign = '*';
     }
 }

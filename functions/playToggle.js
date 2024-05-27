@@ -1,7 +1,9 @@
-function playToggle() {
+import { soundCheckbox, audioToggleOn, audioToggleOff } from '../constants.js';
+
+export function playToggle() {
     if (soundCheckbox.checked) {
         audioToggleOn.currentTime = 0;
-        setTimeout(()=>{audioToggleOn.play()}, 100);
+        setTimeout(() => { audioToggleOn.play() }, 100);
     }
     else {
         audioToggleOff.currentTime = 0.8;
